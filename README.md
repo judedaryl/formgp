@@ -26,7 +26,7 @@ formgp exports a simple useForm hook that accepts an ``initialValue`` and some `
 * ``error``: Was there an error
 * ``dirty``: Is the value dirty or touched
 
-And some event handlers so that anything you type gets reflected. The main change handler, aptly named ``handleChange`` doesn't work on magic glue where it reads a property on the element like ``name`` for example. Instead when you use it, you have to specify what field you want changed. For example:
+And some event handlers so that anything you type gets reflected. The main change handler, aptly named ``handleChange`` doesn't work on magic glue where it reads a property on the element like ``name``. Instead when you use it, you have to specify what field you want changed. For example:
 
 ```tsx
 <input onChange={handleChange('someprop')}>
@@ -42,7 +42,7 @@ Let's go ahead with some examples.
 import { useForm } from 'formgp'
 
 const MyForm = () => {
-    const { values, handleChange } = useForm({ name: 'Joe', nickName: 'Jeyow'})
+    const { values, handleChange } = useForm({ name: 'Daryl', nickName: 'Iceman'})
     return (
         <>
             <input 
@@ -71,7 +71,7 @@ Under the hood, we're really just appending an ``onChange`` and ``onBlur`` handl
 import { useForm } from 'formgp'
 
 const MyForm = () => {
-    const { values, handleChange } = useForm({ name: 'Joe', nickName: 'Jeyow'})
+    const { values, handleChange } = useForm({ name: 'Daryl', nickName: 'Iceman'})
     return (
         <>
             <input 
@@ -100,7 +100,7 @@ Under the hood, we're really just appending an ``onChange`` and ``onBlur`` handl
 import { useForm } from 'formgp'
 
 const MyForm = () => {
-    const { values, handleChange } = useForm({ name: 'Joe', nickName: 'Jeyow'})
+    const { values, handleChange } = useForm({ name: 'Daryl', nickName: 'Iceman'})
     return (
         <>
             <input 
@@ -124,7 +124,7 @@ You can inject some validators to your form properties via the ``validator`` par
 
 ```ts
 const initialValue = {
-    name: 'Joe',
+    name: 'Daryl',
     favoriteNumber: 0
 } 
 
@@ -146,7 +146,7 @@ import { useForm } from 'formgp'
 
 const MyForm = () => {
     const initialValue = {
-        name: 'Joe',
+        name: 'Daryl',
         favoriteNumber: 0
     } 
 
