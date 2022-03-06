@@ -11,14 +11,15 @@ export interface IFormProp {
     onChange?: (value: IFormValue) => void
     withError: boolean
     useEventHandler: boolean
+    checkDirty?: boolean
 }
 
 const Form: React.FC<IFormProp> = (props) => {
+    console.log(props.values)
     const { values, handleChange, eventHandlers } = useForm(props.values, { name: required() });
 
     return (
         <React.Fragment>
-
             <div>
                 {!props.useEventHandler && (
                     <input
@@ -33,7 +34,7 @@ const Form: React.FC<IFormProp> = (props) => {
                     />
                 )}
                 <br />
-                {props.withError && values.name.error && values.name.dirty && <label style={{ color: 'red' }}>{values.name.error}</label>}
+                {props.withError && values.name.error && (!props.checkDirty || values.name.dirty) && <label style={{ color: 'red' }}>{values.name.error}</label>}
             </div>
             <div>
                 {!props.useEventHandler && (
@@ -48,7 +49,7 @@ const Form: React.FC<IFormProp> = (props) => {
                         {...eventHandlers('nickName')}
                     />
                 )}
-                {props.withError && values.nickName.error && values.nickName.dirty && <label style={{ color: 'red' }}>{values.nickName.error}</label>}
+                {props.withError && values.nickName.error && (!props.checkDirty || values.name.dirty) && <label style={{ color: 'red' }}>{values.nickName.error}</label>}
             </div>
         </React.Fragment>
     )

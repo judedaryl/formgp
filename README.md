@@ -4,7 +4,7 @@
 The simplest React form handler you can ever use. No components, just a simple hook that handles changes to your form values. 
 
 
-> Wanted to use Formula1 or formgp or Formula-One but those was taken. i cry 😭 😭 😭
+> Wanted to use Formula1 or formulaone or Formula-One but those were taken. i cry 😭 😭 😭
 
 ## Getting Started
 
@@ -20,7 +20,7 @@ yarn add formgp
 ```
 ### Using
 
-formgp exports a simple useForm hook that accepts an ``initialValue`` and some ``validators`` that you want to use. It then provides you with a ``values`` object that has everything you need for that particular value:
+``formgp`` exports a simple useForm hook that accepts an ``initialValue`` and some ``validators`` that you want to use. It then provides you with a ``values`` object that has everything you need for that particular value:
 
 * ``value``: The actual value
 * ``error``: Was there an error

@@ -13,12 +13,26 @@ export type IFormValue<TValue> = {
 
 export function useForm<T>(initialValue: T, validator?: IValidator<T>) {
 
-    const buildProperties = (value: T) => Object.keys(value).map(q => q as keyof T).reduce((p: any, k: keyof T) => ({ ...p, [k]: { value: initialValue[k], dirty: false } }), {})
+    const buildProperties = (value: T) => Object.keys(value)
+        .map(q => q as keyof T)
+        .reduce((p: any, k: keyof T) => {
+            let error: string | undefined = undefined;
+            if (validator && validator[k]) {
+                error = validator[k]!(value[k] as any)
+            }
+            return {
+                ...p,
+                [k]: { value: value[k], dirty: false, error }
+            }
+        }, {}
+        )
     const properties = buildProperties(initialValue)
     const [values, setValues] = useState<IFormValue<T>>(properties);
 
     useEffect(() => {
-        setValues(buildProperties(initialValue))
+        if (initialValue) {
+            setValues(buildProperties(initialValue))
+        }
     }, [initialValue])
 
     const handleChange = (prop: keyof T) => (ev: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +49,7 @@ export function useForm<T>(initialValue: T, validator?: IValidator<T>) {
         onChange: handleChange(prop),
         onBlur: handleChange(prop)
     })
-    
+
     return { values, handleChange, eventHandlers }
 
 }

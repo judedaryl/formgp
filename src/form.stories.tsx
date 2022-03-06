@@ -17,7 +17,8 @@ Simple.args = {
     values: {
         name: '',
         nickName: ''
-    }
+    },
+    checkDirty: false
 };
 
 export const UsingErrors = Template.bind({});
@@ -26,7 +27,8 @@ UsingErrors.args = {
         name: '',
         nickName: ''
     },
-    withError: true
+    withError: true,
+    checkDirty: false
 };
 
 export const UsingEventHandlers = Template.bind({});
@@ -36,5 +38,17 @@ UsingEventHandlers.args = {
         nickName: ''
     },
     withError: true,
-    useEventHandler: true
+    useEventHandler: true,
+    checkDirty: false
+};
+
+export const ErrorWithDirtyCheck = Template.bind({});
+ErrorWithDirtyCheck.args = {
+    values: {
+        name: '',
+        nickName: ''
+    },
+    withError: true,
+    useEventHandler: true,
+    checkDirty: true
 };
